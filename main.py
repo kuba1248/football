@@ -63,6 +63,13 @@ roma = ['AS Roma', 'EDIN DZEKO', 'STEPHAN EL SHAARAWAY', 'FRANCESCO TOTTI', 'DAN
 lazlo = ['Lazio', 'FELIPE CAICEDO', 'CIRO IMMOBILE', 'NAANI', 'DAVIDE DI GENNARO', 'FELIPE ANDERSON', 'NICOLO ARMINI',
          'DUSAN BASTA', 'BASTOS', 'JORDAN LUKAKU', 'MAURICIO', 'THOMAS STRAKOSHA']
 
+bra = ['Barcelona', 'LUIS SUAREZ', 'MESSI', 'DEMBELE', 'RAKITIC', 'SERGIO.B', 'A. INIESTA', 'SEMEDO', 'PIQUE',
+       'ALBA', 'MASCHERANO', 'TER STEGEN']
+rm = ['Real Madrid', 'RONALDO', 'BALE', 'BENZEMA', 'KROOS', 'MODRIC', 'ISCO', 'CARVAJAL', 'SERGIO RAMOS', 'MARCELO',
+      'CASEMIRO', 'KEYLOR NAVAS']
+
+gpause = time.sleep(18)
+
 team1 = chelsea
 team2 = manu
 goals = 0
@@ -77,8 +84,8 @@ def select_team():
     teams = {'BARCELONA': barcelona, 'MADRID': madrid, 'VALENCIA': valencia, 'ATLETICO MADRID': amadrid,
              'SEVILLA': sevilla, 'MANCHESTER CITY': manc, 'MANCHESTER UNITED': manu, 'CHELSEA': chelsea,
              'TOTTENHAM': tottenham, 'LIVERPOOL': liverpool, 'NAPOLI': napoli, 'JUVENTUS': juventus,
-             'INTER MILAN': inter, 'AS ROMA': roma, 'LAZIO': lazlo}
-    team1 = input('First Team:').upper()
+             'INTER MILAN': inter, 'AS ROMA': roma, 'LAZIO': lazlo, 'BRA': bra, 'RM': rm}
+    team1 = input('First Team:  ').upper()
     print(team1)
     if team1 in teams.keys():
         team1 = teams[team1]
@@ -86,7 +93,9 @@ def select_team():
     else:
         print(team1, 'Does not exist or has not yet been added!!!')
         checker = False
-    team2 = input('Second Team:').upper()
+    print('')
+
+    team2 = input('Second Team: ').upper()
     print(team2)
     if team2 in teams.keys():
         team2 = teams[team2]
@@ -95,6 +104,8 @@ def select_team():
     else:
         print(team2, 'Does not exist or has not yet been added')
         checker = False
+    print('')
+
     if team2 == team1:
         checker2 = False
 
@@ -118,6 +129,7 @@ def randomness():
     midfielders = random.choice(team[4:6])
     re = [strikers, midfielders]
     rea = random.choice(re)
+    gpause
 
 
 randomness()
@@ -149,12 +161,15 @@ def beautifulgoal():
         scorers.append(entry)
     else:
         print('He misses upon all his hardwork')
+    gpause
 
 
 def lineup():
     print('The of lineup of {0} is:'.format(team1[0]))
     for i in team1[1::]:
         print(i)
+
+    time.sleep(3)
     print('\n\nThe of lineup of {0} is:'.format(team2[0]))
     for i in team2[1::]:
         print(i)
@@ -208,6 +223,7 @@ def penalty():
             print('The keeper saves it!')
     else:
         print('The refree waves it off!!')
+    gpause
 
 
 def freekick():
@@ -224,6 +240,7 @@ def freekick():
 
     i = random.randint(1, 2)
     w = random.randint(1, 2)
+    gpause
 
 
 def header():
@@ -238,6 +255,7 @@ def header():
         print('GOAL!!!')
         entry = (rea, j)
         scorers.append(entry)
+    gpause
 
 
 def longshot():
@@ -255,6 +273,7 @@ def longshot():
         print('What a horrible shot by {0}!!!'.format(rea))
     if rn == 3:
         print('Ooooh so close but it hits the bar!!!')
+    gpause
 
 
 # referee events
@@ -274,6 +293,7 @@ def card(player):
     if card == 3 and defend not in yellow:
         if player != rea:
             print('The refree says play on!!!')
+    gpause
 
 
 def booking():
@@ -299,6 +319,7 @@ def booking():
         card(rea)
     if wound == 7 and rn != 3:
         injury(rea)
+    gpause
 
 
 def injury(player):
@@ -312,6 +333,7 @@ def injury(player):
     if rn == 2:
         print('{0} as reveived a slight injury!!!'.format(player))
         print('He has been taken off for treatment at the sidelines')
+    gpause
 
 
 def volley_curler():
@@ -339,6 +361,7 @@ def volley_curler():
             scorers.append(entry)
         else:
             print('What a horrible shot!!')
+    gpause
 
 
 def opposite(player):
@@ -363,6 +386,7 @@ def counter_attack():
         scorers.append(entry)
     else:
         print('Wasted Effort!!!')
+    gpause
 
 
 j = 1
@@ -378,58 +402,96 @@ def display(func1, func2):
 
 def events():
     global j
+    mpause = time.sleep(20)
+    spause = time.sleep(5)
     while j <= 90:
+
         e = random.randint(1, 100)
+        spause
         if j == 1:
             print(j, 'MINUTE\nKICK OFF!!!\n')
             j += 1
+            mpause
+
         if j == 45:
             print(j, 'MINUTES\nHALF TIME!!!\n')
             j += 1
+            mpause
 
         if j == 90:
             print(j, 'MINUTES\nFULL TIME!!!\n')
             j += 1
+            mpause
+
         if e in range(1, 2):
             display(min(j), header())
             j += 1
+            mpause
+
         elif e == 99:
             display(min(j), beautifulgoal())
             j += 1
+            mpause
+
         elif e == 94:
             display(min(j), penalty())
             j += 1
+            mpause
+
         elif e in range(45, 47):
             display(min(j), freekick())
             j += 1
+            mpause
+
         elif e == 20:
             display(min(j), booking())
             j += 1
+            mpause
+
         elif e in range(80, 83):
             display(min(j), longshot())
             j += 1
+            mpause
+
         elif e in range(75, 78):
             display(min(j), volley_curler())
             j += 1
+            mpause
+
         elif e == 38:
             display(min(j), counter_attack())
             j += 1
+            mpause
 
         else:
             j += 1
+
         randomness()
+        mpause
 
 
 def main():
     if checker == True and checker2 == True:
+        time.sleep(1)
         lineup()
+        time.sleep(1)
+        print('*' * 40)
         versus()
+        print('*' * 40)
+
+        time.sleep(1)
         randomness()
+        time.sleep(1)
         events()
+
+        time.sleep(1)
         scoresheet()
+        time.sleep(1)
     if checker == False:
         print("""
 PLEASE PICK FROM THE AVAILABLE TEAMS WHICH ARE:
+BRA
+RM
 BARCELONA
 MADRID
 SEVILLA
